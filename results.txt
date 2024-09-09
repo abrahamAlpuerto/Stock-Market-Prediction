@@ -1,0 +1,49 @@
+Architecture                                                results
+model = Sequential([ # Model Architecture                   MAPE: 2.3269742762209886% 
+    Input(shape=(input_length, 18)), 
+    LSTM(200,return_sequences=True),
+    LSTM(100,return_sequences=False),
+    Dense(50,activation='relu'),
+    Dense(prediction_length)
+])
+history = model.fit(X_train, y_train, 
+                    batch_size=16,
+                    epochs=20,  # Increase epochs for better training
+                    validation_data=(X_test, y_test), 
+                    callbacks=[lr_scheduler])
+
+
+
+
+
+model = Sequential([                                        MAPE: 4
+    Input(shape=(input_length, 18)), 
+    LSTM(200, return_sequences=True),
+    Dropout(0.2),  
+    LSTM(100, return_sequences=False),
+    Dropout(0.2),  
+    Dense(50, activation='relu'),
+    Dense(prediction_length)
+])
+
+
+
+model = Sequential([
+    Input(shape=(input_length, 18)),
+    LSTM(200, return_sequences=True),
+    AttentionLayer(),  # Add custom attention layer after LSTM
+    Dense(100, activation='relu'),
+    Dense(prediction_length)
+])                                                      MAPE: 2.0808722915578106%   on 40 day predict and 180 input 1.7917356968344431%
+
+
+model = Sequential([                                    MAPE: 2.1965874286985687%
+    Input(shape=(input_length, 18)),
+    LSTM(200, return_sequences=True),
+    LSTM(100,return_sequences=True),
+    AttentionLayer(),  # Add custom attention layer after LSTM
+    Dense(100, activation='relu'),
+    Dense(prediction_length)
+])
+
+

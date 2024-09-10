@@ -59,4 +59,4 @@ plot_predictions(predictions_rescaled, y_test_rescaled)
 
 # Calculate the rescaled MAPE
 mape_rescaled = np.mean(np.abs((y_test_rescaled - predictions_rescaled) / y_test_rescaled)) * 100
-print(f'Rescaled MAPE: {mape_rescaled}%')
+print(f'MAPE: {mape_rescaled}%')
